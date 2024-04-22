@@ -5,8 +5,16 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title Document
         script(src="https://cdn.tailwindcss.com") 
+        script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         script(src="/js/script.js") 
-    body.grid.grid-column-5
+    body.grid.grid-column-5.text-xl
+        .w-full.bg-slate-500.h-16.drop-shadow-lg.py-2.flex.justify-end.drop-shadow-lg  
+            a(href=`profile/${username}` class="transition ease-in-out duration-300 hover:bg-blue-100").w-32.h-12.border-2.border-slate-800.mx-2.rounded-full.bg-white.flex.justify-center.items-center.px-2.cursor-pointer#username
+                i.fa-regular.fa-user.pr-1
+                p.text-m= `${username}`
+            a(href="kill-session" class="transition ease-in-out duration-300 hover:bg-blue-100").w-32.h-12.border-2.border-slate-800.mx-2.rounded-full.bg-white.px-2.cursor-pointer.flex.justify-center.items-center
+                i.fa-solid.fa-arrow-right-from-bracket
+                p.text-m.text-center.ml-1 Logout  
         h1.text-4xl.mt-4.mx-auto Snus Clicker
         .h-8.border-2.mx-auto.my-8
             p.text-xl#cookieCounter= `Du har ${cookies} prillor`
