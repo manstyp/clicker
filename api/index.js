@@ -43,29 +43,44 @@ app.get("/", (req, res) => {
   res.redirect("/home");
 });
 
-app.get("/game", (req, res) => {
-  res.render("game", {
-    username: req.session.username,
-  });
+app.get("/game", async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    if (!userId) {
+      return res.redirect("/login");
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.render("game", {
+      username: user.username,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.get("/home", async (req, res) => {
-  if (!req.session.userId && process.env.ENVIRONMENT != "DEV") {
-    res.render("home");
-  } else {
-    let userId, user;
-    if (process.env.ENVIRONMENT == "DEV") {
-      userId = 0;
-      user = {
-        username: "Admin",
-      };
-    } else {
-      userId = req.session.userId;
-      user = await User.findById(userId);
-    }
+  // if (!req.session.userId && process.env.ENVIRONMENT != "DEV") {
+  res.render("home");
+  // } else {
+  //   let userId, user;
+  //   if (process.env.ENVIRONMENT == "DEV") {
+  //     userId = 0;
+  //     user = {
+  //       username: "Admin",
+  //     };
+  //   } else {
+  //     userId = req.session.userId;
+  //     user = await User.findById(userId);
+  //   }
 
-    res.redirect("/game");
-  }
+  // res.redirect("/game");
+  // }
 });
 
 app.get("/login", (req, res) => {
@@ -74,6 +89,11 @@ app.get("/login", (req, res) => {
 
 app.get("/register", (req, res) => {
   res.render("register");
+});
+
+app.get("/kill-session", (req, res) => {
+  req.session.destroy();
+  res.redirect("/home");
 });
 
 app.post("/authenticate-register", async (req, res) => {
@@ -91,7 +111,7 @@ app.post("/authenticate-register", async (req, res) => {
     await newUser.save();
 
     req.session.userId = newUser._id;
-    // req.session.username = newUser.username;
+    req.session.username = newUser.username;
     // req.session.password = newUser.password;
 
     res.status(201).redirect("/login");
@@ -115,7 +135,7 @@ app.post("/authenticate-login", async (req, res) => {
 
     if (passwordMatch) {
       req.session.userId = user._id;
-      res.status(201).redirect("/home");
+      res.status(201).redirect("/game");
     } else {
       res.status(401).send("Invalid password");
     }

@@ -19,3 +19,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function amountOfCookies() {}
 });
+
+window.onload = function () {
+  const usernameElement = document.querySelector("#username");
+  const username = usernameElement.getAttribute("href").split("/").pop();
+
+  if (username.length <= 6) {
+    usernameElement.classList.remove("w-32");
+    usernameElement.classList.add("w-24");
+  } else if (username.length > 6 && username.length <= 12) {
+    usernameElement.classList.remove("w-32");
+    usernameElement.classList.add("w-36");
+  } else if (username.length > 12) {
+    usernameElement.classList.remove("w-32");
+    usernameElement.classList.add("w-48");
+  }
+};
