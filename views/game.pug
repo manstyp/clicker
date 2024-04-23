@@ -3,13 +3,42 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        title Document
+        title Snus Clicker
         script(src="https://cdn.tailwindcss.com") 
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         script(src="/js/script.js") 
-    body.grid.grid-column-5.text-xl
-        h1.text-4xl.mt-4.mx-auto Snus Clicker
-        .h-8.border-2.mx-auto.my-8
-            p.text-xl#cookieCounter= `Du har ${cookies} prillor`
-        button.w-64.h-64.border-2.border-slate-800.mx-auto.my-2.rounded-full#clickButton(onclick="clickCounter()")
-        h2.text-xl#clickCounter.ml-4.absolute= `Counter: ${clicks}`
+    body.text-xl.grid
+        h1.text-5xl.mt-4.mx-auto Snus Clicker
+        .grid.grid-cols-3
+            .col-start-1.h-96.border-2
+                h2.text-xl#clickCounter.ml-4.absolute= `Clicks: ${clicks}`
+            .col-start-2.h-96.grid.border-2
+                .h-8.my-8.column-start-2
+                    p.text-xl#cookieCounter.text-center.content-center= `${cookies} kr`
+                    p.text-xl#cookiesPerSecond.text-center= `${cookiesPerSecond} kr per sekund`
+                .div.column-start-2.mx-auto
+                    button.w-80.h-80.my-2.rounded-full#clickButton
+                        img(src="/assets/snus.png" alt="").rotating-image
+            .col-start-3.h-96.border-2
+                .w-full.border-2
+                    h3.text-center.text-3xl.mb-4 Shop
+                    .w-full.border-2.h-80.p-4
+                        .w-50.h-16.border-2.grid.grid-cols-4.p-1.rounded-lg
+                            .grid.col-start-1.items-center
+                                p.p-2 Ettan
+                            .grid-col-start-3.grid.items-center.justify-end
+                                p.p-2#upgrade1Cost= `${upgrade1Cost} kr`
+                            .grid.col-start-4.justify-end.grid.items-center
+                                button.w-24.h-12.border-2.rounded-lg.border-slate-800.mx-2#upgrade1 Köp!
+style.
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    .rotating-image {
+        animation: rotate 25s linear infinite;
+    }
