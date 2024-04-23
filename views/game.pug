@@ -15,7 +15,7 @@ html(lang="en")
                     h3.text-center.text-3xl.mb-4 Statistik
                     .w-full.h-80.p-4.rounded-lg.border-2.border-slate-800.mx-4
                         h2.text-xl#clickCounter.ml-2= `Totala klicks: ${clicks}`
-                        h2.text-xl.ml-2= `Kronor per klick: ${1}`
+                        h2.text-xl.ml-2#clickMultiplier= `Klickstyrka: ${clickMultiplier} mg`
             .col-start-2.h-96.grid
                 .h-8.my-8.column-start-2
                     p.text-xl#cookieCounter.text-center.content-center= `${cookies} kr`
@@ -27,28 +27,51 @@ html(lang="en")
                 .w-full
                     h3.text-center.text-3xl.mb-4 Affär
                     .w-full.h-80.p-4
-                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2
+                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade1.cursor-pointer
                             .grid.col-start-1.items-center
-                                img(src="/assets/ettan.png" alt="").w-10.mx-2
+                                img(src="/assets/red_swirl.png" alt="").w-10.mx-2.drop-shadow-lg
                             .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
-                                p.p-2 Ettan
+                                p.p-2 Volt Red Swirl
                             .grid-col-start-3.grid.items-center.justify-end
                                 p.p-2 +0.1
                             .grid-col-start-4.grid.items-center.justify-end
                                 p.p-2#upgrade1Cost= `${upgrade1Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                button.w-24.h-12.border-2.rounded-lg.border-slate-800.mx-2#upgrade1 Köp!
-                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2
+                                p.p-2#upgrade1Amount= `${upgrade1Amount} st`
+                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade2.cursor-pointer.hidden
                             .grid.col-start-1.items-center
-                                img(src="/assets/general.png" alt="").w-10.mx-2
+                                img(src="/assets/zone_x.png" alt="").w-10.mx-2.drop-shadow-lg
                             .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
-                                p.p-2 General
+                                p.p-2 Zone X Cold Blast
                             .grid-col-start-3.grid.items-center.justify-end
                                 p.p-2 +1
                             .grid-col-start-4.grid.items-center.justify-end
                                 p.p-2#upgrade2Cost= `${upgrade2Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                button.w-24.h-12.border-2.rounded-lg.border-slate-800.mx-2#upgrade2 Köp!
+                                p.p-2#upgrade2Amount= `${upgrade2Amount} st`
+                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade3.cursor-pointer.hidden
+                            .grid.col-start-1.items-center
+                                img(src="/assets/one.png" alt="").w-10.mx-2.drop-shadow-lg
+                            .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
+                                p.p-2 One blå
+                            .grid-col-start-3.grid.items-center.justify-end
+                                p.p-2 +8
+                            .grid-col-start-4.grid.items-center.justify-end
+                                p.p-2#upgrade3Cost= `${upgrade3Cost} kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                p.p-2#upgrade3Amount= `${upgrade3Amount} st`
+                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer.hidden
+                            .grid.col-start-1.items-center
+                                img(src="/assets/velo_freeze.png" alt="").w-10.mx-2.drop-shadow-lg
+                            .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
+                                p.p-2 Velo max freeze
+                            .grid-col-start-3.grid.items-center.justify-end
+                                p.p-2 +40
+                            .grid-col-start-4.grid.items-center.justify-end
+                                p.p-2#upgrade4Cost.absolute= `${upgrade4Cost} kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                p.p-2#upgrade4Amount= `${upgrade4Amount} st`        
+        .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600                 
 style.
     @keyframes rotate {
         from {
@@ -60,4 +83,19 @@ style.
     }
     .rotating-image {
         animation: rotate 25s linear infinite;
+    }
+    .dynamic-div {
+        width: var(--width-variable)
+    }
+    @font-face {
+        font-family: coco;
+        src: url("/fonts/LEMONMILK-Bold.otf");
+    }
+    body {
+        font-family: coco ;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Standard */
     }
