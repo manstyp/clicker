@@ -1,37 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let clicks = 0;
-  let cookies = 0;
+  let clicks = parseInt(localStorage.getItem("clicks")) || 0;
+  let cookies = parseInt(localStorage.getItem("cookies")) || 0;
   let clickMultiplier = 1;
 
   const clickButton = document.getElementById("clickButton");
-  clickButton.addEventListener("click", function () {
-    clickCounter();
-    const clickCounterElement = document.getElementById("clickCounter");
-    const cookieElement = document.getElementById("cookieCounter");
-    clickCounterElement.textContent = `Counter: ${clicks}`;
-    cookieElement.textContent = `du har ${cookies} prillor`;
-  });
+  const cookieElement = document.getElementById("cookieCounter");
+  const clickCounterElement = document.getElementById("clickCounter");
 
-  function clickCounter() {
+  clickCounterElement.textContent = `Counter: ${clicks}`;
+  cookieElement.textContent = `du har ${cookies} prillor`;
+
+  clickButton.addEventListener("click", () => {
+    cookies += 1;
     clicks += 1;
-    cookies += 1 * clickMultiplier;
-  }
+    localStorage.setItem("cookies", cookies);
+    localStorage.setItem("clicks", clicks);
 
-  function amountOfCookies() {}
+    cookieElement.textContent = `du har ${cookies} prillor`;
+    clickCounterElement.textContent = `Counter: ${clicks}`;
+  });
 });
-
-window.onload = function () {
-  const usernameElement = document.querySelector("#username");
-  const username = usernameElement.getAttribute("href").split("/").pop();
-
-  if (username.length <= 6) {
-    usernameElement.classList.remove("w-32");
-    usernameElement.classList.add("w-24");
-  } else if (username.length > 6 && username.length <= 12) {
-    usernameElement.classList.remove("w-32");
-    usernameElement.classList.add("w-36");
-  } else if (username.length > 12) {
-    usernameElement.classList.remove("w-32");
-    usernameElement.classList.add("w-48");
-  }
-};
