@@ -7,29 +7,48 @@ html(lang="en")
         script(src="https://cdn.tailwindcss.com") 
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         script(src="/js/script.js") 
-    body.text-xl.grid
-        h1.text-5xl.mt-4.mx-auto Snus Clicker
+    body.text-xl.grid(class="bg-gradient-to-r from-orange-100 to-amber-100")
+        h1.text-5xl.mt-4.mx-auto.drop-shadow-xl Snus Clicker
         .grid.grid-cols-3
-            .col-start-1.h-96.border-2
-                h2.text-xl#clickCounter.ml-4.absolute= `Clicks: ${clicks}`
-            .col-start-2.h-96.grid.border-2
+            .col-start-1.h-96
+                .w-full
+                    h3.text-center.text-3xl.mb-4 Statistik
+                    .w-full.h-80.p-4.rounded-lg.border-2.border-slate-800.mx-4
+                        h2.text-xl#clickCounter.ml-2= `Totala klicks: ${clicks}`
+                        h2.text-xl.ml-2= `Kronor per klick: ${1}`
+            .col-start-2.h-96.grid
                 .h-8.my-8.column-start-2
                     p.text-xl#cookieCounter.text-center.content-center= `${cookies} kr`
                     p.text-xl#cookiesPerSecond.text-center= `${cookiesPerSecond} kr per sekund`
                 .div.column-start-2.mx-auto
                     button.w-80.h-80.my-2.rounded-full#clickButton
-                        img(src="/assets/snus.png" alt="").rotating-image
-            .col-start-3.h-96.border-2
-                .w-full.border-2
-                    h3.text-center.text-3xl.mb-4 Shop
-                    .w-full.border-2.h-80.p-4
-                        .w-50.h-16.border-2.grid.grid-cols-4.p-1.rounded-lg
+                        img(src="/assets/snus.png" alt="").rotating-image.drop-shadow-xl
+            .col-start-3.h-96
+                .w-full
+                    h3.text-center.text-3xl.mb-4 Affär
+                    .w-full.h-80.p-4
+                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2
                             .grid.col-start-1.items-center
+                                img(src="/assets/ettan.png" alt="").w-10.mx-2
+                            .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
                                 p.p-2 Ettan
                             .grid-col-start-3.grid.items-center.justify-end
+                                p.p-2 +0.1
+                            .grid-col-start-4.grid.items-center.justify-end
                                 p.p-2#upgrade1Cost= `${upgrade1Cost} kr`
-                            .grid.col-start-4.justify-end.grid.items-center
+                            .grid.col-start-5.justify-end.grid.items-center
                                 button.w-24.h-12.border-2.rounded-lg.border-slate-800.mx-2#upgrade1 Köp!
+                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2
+                            .grid.col-start-1.items-center
+                                img(src="/assets/general.png" alt="").w-10.mx-2
+                            .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
+                                p.p-2 General
+                            .grid-col-start-3.grid.items-center.justify-end
+                                p.p-2 +1
+                            .grid-col-start-4.grid.items-center.justify-end
+                                p.p-2#upgrade2Cost= `${upgrade2Cost} kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                button.w-24.h-12.border-2.rounded-lg.border-slate-800.mx-2#upgrade2 Köp!
 style.
     @keyframes rotate {
         from {

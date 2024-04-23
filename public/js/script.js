@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let clickMultiplier = 1;
 
   let upgrade1Cost = parseInt(localStorage.getItem("upgrade1Cost")) || 20;
+  let upgrade2Cost = parseInt(localStorage.getItem("upgrade2Cost")) || 100;
 
   const clickButton = document.getElementById("clickButton");
   const cookieElement = document.getElementById("cookieCounter");
@@ -13,13 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const cookiesPerSecondElement = document.getElementById("cookiesPerSecond");
   const upgrade1Element = document.getElementById("upgrade1");
   const upgrade1CostElement = document.getElementById("upgrade1Cost");
+  const upgrade2Element = document.getElementById("upgrade2");
+  const upgrade2CostElement = document.getElementById("upgrade2Cost");
 
-  clickCounterElement.textContent = `Counter: ${clicks}`;
+  //uppdatera text content
+  clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
   cookieElement.textContent = `${cookies.toFixed(0)} kr`;
   cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
     1
   )} per sekund`;
   upgrade1CostElement.textContent = `${upgrade1Cost} kr`;
+  upgrade2CostElement.textContent = `${upgrade2Cost} kr`;
 
   clickButton.addEventListener("click", () => {
     cookies += 1 * clickMultiplier;
@@ -28,10 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("clicks", clicks);
 
     cookieElement.textContent = `${cookies.toFixed(0)} kr`;
-    clickCounterElement.textContent = `Counter: ${clicks}`;
+    clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
   });
 
-  //Första uppgradering
+  // Uppgraderingar
   upgrade1Element.addEventListener("click", () => {
     if (cookies >= upgrade1Cost) {
       cookies -= upgrade1Cost;
@@ -46,17 +51,33 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
       localStorage.setItem("upgrade1Cost", upgrade1Cost);
     } else {
-      alert(
-        "Du har inte tillräckligt med kakor för att köpa denna uppgradering!"
-      );
+      alert("Du är för fattig för dehär");
+    }
+  });
+
+  upgrade2Element.addEventListener("click", () => {
+    if (cookies >= upgrade2Cost) {
+      cookies -= upgrade2Cost;
+      cookiesPerSecond += 1;
+      upgrade2Cost += 30;
+      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
+        1
+      )} per sekund`;
+      upgrade2CostElement.textContent = `${upgrade2Cost} kr`;
+
+      localStorage.setItem("cookies", cookies);
+      localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
+      localStorage.setItem("upgrade2Cost", upgrade2Cost);
+    } else {
+      alert("Du är för fattig för dehär");
     }
   });
 
   function updateCookiesPerSecond() {
-    cookies += cookiesPerSecond;
+    cookies += cookiesPerSecond / 10;
     cookieElement.textContent = `${cookies.toFixed(0)} kr`;
     localStorage.setItem("cookies", cookies);
   }
 
-  setInterval(updateCookiesPerSecond, 1000);
+  setInterval(updateCookiesPerSecond, 100);
 });
