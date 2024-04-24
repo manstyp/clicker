@@ -35,7 +35,7 @@ html(lang="en")
                             .grid-col-start-3.grid.items-center.justify-end
                                 p.p-2 +0.1
                             .grid-col-start-4.grid.items-center.justify-end
-                                p.p-2#upgrade1Cost= `${upgrade1Cost} kr`
+                                p.p-2#upgrade1Cost.absolute= `${upgrade1Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-2#upgrade1Amount= `${upgrade1Amount} st`
                         .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade2.cursor-pointer.hidden
@@ -46,7 +46,7 @@ html(lang="en")
                             .grid-col-start-3.grid.items-center.justify-end
                                 p.p-2 +1
                             .grid-col-start-4.grid.items-center.justify-end
-                                p.p-2#upgrade2Cost= `${upgrade2Cost} kr`
+                                p.p-2#upgrade2Cost.absolute= `${upgrade2Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-2#upgrade2Amount= `${upgrade2Amount} st`
                         .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade3.cursor-pointer.hidden
@@ -57,7 +57,7 @@ html(lang="en")
                             .grid-col-start-3.grid.items-center.justify-end
                                 p.p-2 +8
                             .grid-col-start-4.grid.items-center.justify-end
-                                p.p-2#upgrade3Cost= `${upgrade3Cost} kr`
+                                p.p-2#upgrade3Cost.absolute= `${upgrade3Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-2#upgrade3Amount= `${upgrade3Amount} st`
                         .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer.hidden
@@ -71,7 +71,7 @@ html(lang="en")
                                 p.p-2#upgrade4Cost.absolute= `${upgrade4Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-2#upgrade4Amount= `${upgrade4Amount} st`        
-        .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600                 
+        .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 
 style.
     @keyframes rotate {
         from {
@@ -98,4 +98,14 @@ style.
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
         user-select: none; /* Standard */
+    }
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+    .shake-animation {
+        animation: shake 0.5s ease;
     }

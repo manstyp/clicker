@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const upgrade4CostElement = document.getElementById("upgrade4Cost");
   const upgrade4AmountElement = document.getElementById("upgrade4Amount");
 
+  const milkBarElement = document.getElementById("milkBar");
+
   //uppdatera text content
   clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
   clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
@@ -88,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookies -= upgrade1Cost;
       cookiesPerSecond += 0.1;
       upgrade1Amount += 1;
+      upgrade2Element.classList.remove("hidden");
       upgrade1Cost += 6 * Math.pow(1.05, upgrade1Amount);
       //upgrade2Element.classList.remove("hidden");
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
@@ -101,7 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("upgrade1Cost", upgrade1Cost);
       localStorage.setItem("upgrade1Amount", upgrade1Amount);
     } else {
-      alert("Du är för fattig för dehär");
+      upgrade1Element.classList.add("shake-animation");
+      upgrade1Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade1Element.classList.remove("shake-animation");
+        upgrade1Element.classList.remove("border-red-600");
+      }, 500);
     }
   });
 
@@ -110,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookies -= upgrade2Cost;
       cookiesPerSecond += 1;
       upgrade2Amount += 1;
+      upgrade3Element.classList.remove("hidden");
       upgrade2Cost += 25 * Math.pow(1.05, upgrade2Amount);
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
@@ -122,7 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("upgrade2Cost", upgrade2Cost);
       localStorage.setItem("upgrade2Amount", upgrade2Amount);
     } else {
-      alert("Du är för fattig för dehär");
+      upgrade2Element.classList.add("shake-animation");
+      upgrade2Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade2Element.classList.remove("shake-animation");
+        upgrade2Element.classList.remove("border-red-600");
+      }, 500);
     }
   });
 
@@ -131,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookies -= upgrade3Cost;
       cookiesPerSecond += 8;
       upgrade3Amount += 1;
+      upgrade4Element.classList.remove("hidden");
       upgrade3Cost += 200 * Math.pow(1.05, upgrade3Amount);
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
@@ -143,7 +158,12 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("upgrade3Cost", upgrade3Cost);
       localStorage.setItem("upgrade3Amount", upgrade3Amount);
     } else {
-      alert("Du är för fattig för dehär");
+      upgrade3Element.classList.add("shake-animation");
+      upgrade3Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade3Element.classList.remove("shake-animation");
+        upgrade3Element.classList.remove("border-red-600");
+      }, 500);
     }
   });
 
@@ -164,7 +184,12 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("upgrade4Cost", upgrade4Cost);
       localStorage.setItem("upgrade4Amount", upgrade4Amount);
     } else {
-      alert("Du är för fattig för dehär");
+      upgrade4Element.classList.add("shake-animation");
+      upgrade4Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade4Element.classList.remove("shake-animation");
+        upgrade4Element.classList.remove("border-red-600");
+      }, 500);
     }
   });
 
@@ -203,9 +228,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (count % 2 === 0) {
         clickMultiplier = clickMultiplier * 3;
         incrementAmount = 1000 / (3 * 60 * 100);
+        milkBarElement.classList.add("bg-blue-500");
+        milkBarElement.classList.remove("bg-red-600");
       } else {
         incrementAmount = 100 / (3 * 60 * 100);
         clickMultiplier = clickMultiplier / 3;
+        milkBarElement.classList.remove("bg-blue-500");
+        milkBarElement.classList.add("bg-red-600");
       }
       console.log(clickMultiplier);
       localStorage.setItem("clickMultiplier", clickMultiplier);
