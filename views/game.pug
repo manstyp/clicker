@@ -6,6 +6,7 @@ html(lang="en")
         title Snus Clicker
         script(src="https://cdn.tailwindcss.com") 
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
+        link(rel="stylesheet" href="/css/style.css")
         script(src="/js/script.js") 
     body.text-xl.grid(class="bg-gradient-to-r from-orange-100 to-amber-100")
         h1.text-5xl.mt-4.mx-auto.drop-shadow-xl Snus Clicker
@@ -27,15 +28,19 @@ html(lang="en")
                 .w-full
                     h3.text-center.text-3xl.mb-4 Affär
                     .w-full.h-80.p-4
-                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade1.cursor-pointer
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade1.cursor-pointer
                             .grid.col-start-1.items-center
-                                img(src="/assets/red_swirl.png" alt="").w-10.mx-2.drop-shadow-lg
-                            .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
-                                p.p-2 Volt Red Swirl
-                            .grid-col-start-3.grid.items-center.justify-end
-                                p.p-2 +0.1
-                            .grid-col-start-4.grid.items-center.justify-end
-                                p.p-2#upgrade1Cost.absolute= `${upgrade1Cost} kr`
+                                img(src="/assets/red_swirl.png" alt="").w-14.mx-2.drop-shadow-lg
+                            .grid.col-start-2.col-span-3.items-start(class="mx-[-1rem]")
+                                .grid.grid-rows-2.gap-0
+                                    .grid.justify-start
+                                        p.p-2 Volt Red Swirl
+                                    .grid.items-start.grid-cols-2.justify-center
+                                        i.fa-solid.fa-coins.col-start-1
+                                        p.p-2#upgrade1Cost.col-start-2= `${upgrade1Cost} kr`
+                            //.grid-col-start-3.grid.items-center.justify-end
+                            //  p.p-2 +0.1
+                            // .grid-col-start-4.grid.items-center.justify-end
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-2#upgrade1Amount= `${upgrade1Amount} st`
                         .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade2.cursor-pointer.hidden
@@ -72,40 +77,3 @@ html(lang="en")
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-2#upgrade4Amount= `${upgrade4Amount} st`        
         .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 
-style.
-    @keyframes rotate {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
-    .rotating-image {
-        animation: rotate 25s linear infinite;
-    }
-    .dynamic-div {
-        width: var(--width-variable)
-    }
-    @font-face {
-        font-family: coco;
-        src: url("/fonts/LEMONMILK-Bold.otf");
-    }
-    body {
-        font-family: coco ;
-        -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-        user-select: none; /* Standard */
-    }
-    @keyframes shake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-        100% { transform: translateX(0); }
-    }
-    .shake-animation {
-        animation: shake 0.5s ease;
-    }

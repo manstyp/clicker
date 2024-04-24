@@ -1,0 +1,46 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating-image {
+  animation: rotate 25s linear infinite;
+}
+.dynamic-div {
+  width: var(--width-variable);
+}
+@font-face {
+  font-family: coco;
+  src: url("/fonts/LEMONMILK-Bold.otf");
+}
+body {
+  font-family: coco;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard */
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.shake-animation {
+  animation: shake 0.5s ease;
+}
