@@ -8,6 +8,7 @@ html(lang="en")
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         link(rel="stylesheet" href="/css/style.css")
         script(src="/js/script.js") 
+        meta(name='google-adsense-account' content='ca-pub-8188712639195894')
     body.text-xl.grid(class="bg-gradient-to-r from-orange-100 to-amber-100")
         h1.text-5xl.mt-4.mx-auto.drop-shadow-xl Snus Clicker
         .grid.grid-cols-3
@@ -44,7 +45,7 @@ html(lang="en")
                                 img(src="/assets/zone_x.png" alt="").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]")
                                 .grid.justify-start
-                                    p.mt-1 Volt Red Swirl
+                                    p.mt-1 zone x cold blast
                                 .grid.items-start.grid-cols-10.justify-start
                                     p#upgrade2Cost.col-start-1.col-span-8= `${upgrade2Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
@@ -55,21 +56,21 @@ html(lang="en")
                                 img(src="/assets/one.png" alt="").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
                                 .grid.justify-start
-                                    p.mt-1 Volt Red Swirl
+                                    p.mt-1 one blå
                                 .grid.items-start.grid-cols-10.justify-start
-                                    p#upgrade2Cost.col-start-1.col-span-8= `${upgrade2Cost} kr`
+                                    p#upgrade3Cost.col-start-1.col-span-8= `${upgrade3Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade2Amount= `${upgrade2Amount} st`
-                                p.text-end.mx-1 +1
-                        .w-50.h-16.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer.hidden
-                            .grid.col-start-1.items-center
-                                img(src="/assets/velo_freeze.png" alt="").w-10.mx-2.drop-shadow-lg
-                            .grid.col-start-2.items-center.justify-start(class="mx-[-4rem]")
-                                p.p-2 Velo max freeze
-                            .grid-col-start-3.grid.items-center.justify-end
-                                p.p-2 +40
-                            .grid-col-start-4.grid.items-center.justify-end
-                                p.p-2#upgrade4Cost.absolute= `${upgrade4Cost} kr`
+                                p.p-1#upgrade3Amount= `${upgrade3Amount} st`
+                                p.text-end.mx-1 +8
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer
+                            .grid.col-start-1.items-center.h-16
+                                img(src="/assets/velo_freeze.png" alt="").w-14.mx-2.drop-shadow-lg
+                            .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
+                                .grid.justify-start
+                                    p.mt-1 velo max freeze
+                                .grid.items-start.grid-cols-10.justify-start
+                                    p#upgrade4Cost.col-start-1.col-span-8= `${upgrade4Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-2#upgrade4Amount= `${upgrade4Amount} st`        
+                                p.p-1#upgrade4Amount= `${upgrade4Amount} st`
+                                p.text-end.mx-1 +8      
         .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 
