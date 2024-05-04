@@ -8,7 +8,7 @@ html(lang="en")
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         link(rel="stylesheet" href="/css/style.css")
         script(src="/js/script.js") 
-        script(src="/js/hover.js") 
+        script(src="/js/upgrades.js") 
         script(src="/js/slides.js") 
         meta(name='google-adsense-account' content='ca-pub-8188712639195894')
     body.text-xl.grid(class="bg-gradient-to-r from-orange-100 to-amber-100")
@@ -81,5 +81,15 @@ html(lang="en")
                                 p.p-1#upgrade4Amount= `${upgrade4Amount} st`
                                 p.text-end.mx-1 +40   
                     .w-full.h-80.p-4#slide2Content.hidden
-                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#cursorUpgrade.cursor-pointer
+                            .grid-col-start-1.items-center.h-16 
+                                img(src="/assets/cursor.png").w-12(class="rotate-[-20deg]").ml-1
+                            .grid-col-start.2-col-span-3.items-start(class="mx-[-2.5rem]") 
+                                .grid.justify-start
+                                    p.mt-1 klickstyrka 
+                                .grid.items-start.grid-cols-10.justify-start
+                                    p.col-start-1.col-span-8= `fett dyr kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                p.p-1#upgrade4Amount= ` 1 st`
+                                p.text-end.mx-1 +40   
         .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 

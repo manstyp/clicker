@@ -9,16 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("appVersion", newAppVersion);
   }
 
-  let clicksNonSave = parseInt(0);
-  let clicks = parseInt(localStorage.getItem("clicks")) || 0;
-  let cookies = parseFloat(localStorage.getItem("cookies")) || 0;
-  let cookiesPerSecond =
-    parseFloat(localStorage.getItem("cookiesPerSecond")) || 0;
-  let clickMultiplier =
-    parseFloat(localStorage.getItem("clickMultiplier")) || 1;
-  let count = 0;
-  let incrementAmount = 100 / (3 * 60 * 100);
-
   let upgrade1Cost = parseInt(localStorage.getItem("upgrade1Cost")) || 20;
   let upgrade1Amount = parseInt(localStorage.getItem("upgrade1Amount")) || 0;
 
@@ -53,7 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const upgrade4CostElement = document.getElementById("upgrade4Cost");
   const upgrade4AmountElement = document.getElementById("upgrade4Amount");
 
-  const milkBarElement = document.getElementById("milkBar");
+  let clicksNonSave = parseInt(0);
+  let clicks = parseInt(localStorage.getItem("clicks")) || 0;
+  let cookies = parseFloat(localStorage.getItem("cookies")) || 0;
+  let cookiesPerSecond =
+    parseFloat(localStorage.getItem("cookiesPerSecond")) || 0;
+  let clickMultiplier =
+    parseFloat(localStorage.getItem("clickMultiplier")) || 1;
 
   //uppdatera text content
   clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
@@ -62,17 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
   cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
     1
   )} per sekund`;
-  upgrade1CostElement.textContent = `${upgrade1Cost} kr`;
-  upgrade1AmountElement.textContent = `${upgrade1Amount} st`;
-
-  upgrade2CostElement.textContent = `${upgrade2Cost} kr`;
-  upgrade2AmountElement.textContent = `${upgrade2Amount} st`;
-
-  upgrade3CostElement.textContent = `${upgrade3Cost} kr`;
-  upgrade3AmountElement.textContent = `${upgrade3Amount} st`;
-
-  upgrade4CostElement.textContent = `${upgrade4Cost} kr`;
-  upgrade4AmountElement.textContent = `${upgrade4Amount} st`;
 
   //klick grej
   clickButton.addEventListener("click", () => {
@@ -90,6 +75,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Uppgraderingar
+  upgrade1CostElement.textContent = `${upgrade1Cost} kr`;
+  upgrade1AmountElement.textContent = `${upgrade1Amount} st`;
+
+  upgrade2CostElement.textContent = `${upgrade2Cost} kr`;
+  upgrade2AmountElement.textContent = `${upgrade2Amount} st`;
+
+  upgrade3CostElement.textContent = `${upgrade3Cost} kr`;
+  upgrade3AmountElement.textContent = `${upgrade3Amount} st`;
+
+  upgrade4CostElement.textContent = `${upgrade4Cost} kr`;
+  upgrade4AmountElement.textContent = `${upgrade4Amount} st`;
+
   upgrade1Element.addEventListener("click", () => {
     if (cookies >= upgrade1Cost) {
       cookies -= upgrade1Cost;
@@ -206,48 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setInterval(updateCookiesPerSecond, 10);
 
-  //nico-kick / mjölk
-  function milkBar() {
-    let widthPercentage = 0;
-
-    const interval = setInterval(() => {
-      widthPercentage += incrementAmount;
-      document.documentElement.style.setProperty(
-        "--width-variable",
-        widthPercentage + "%"
-      );
-
-      if (widthPercentage >= 100) {
-        clearInterval(interval);
-        resetBar();
-      }
-    }, 10);
-
-    function resetBar() {
-      widthPercentage = 0;
-      document.documentElement.style.setProperty(
-        "--width-variable",
-        widthPercentage + "%"
-      );
-
-      if (count % 2 === 0) {
-        clickMultiplier = clickMultiplier * 3;
-        incrementAmount = 1000 / (3 * 60 * 100);
-        milkBarElement.classList.add("bg-blue-500");
-        milkBarElement.classList.remove("bg-red-600");
-      } else {
-        incrementAmount = 100 / (3 * 60 * 100);
-        clickMultiplier = clickMultiplier / 3;
-        milkBarElement.classList.remove("bg-blue-500");
-        milkBarElement.classList.add("bg-red-600");
-      }
-      console.log(clickMultiplier);
-      localStorage.setItem("clickMultiplier", clickMultiplier);
-      clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
-      count += 1;
-      milkBar();
-    }
-  }
   function updateUpgradeStatus() {
     localStorage.setItem(
       "upgrade2Unlocked",
@@ -285,7 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //call functions
-  milkBar();
   updateUpgradeStatus();
   showUpgrades();
 });
