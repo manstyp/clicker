@@ -8,6 +8,8 @@ html(lang="en")
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         link(rel="stylesheet" href="/css/style.css")
         script(src="/js/script.js") 
+        script(src="/js/hover.js") 
+        script(src="/js/slides.js") 
         meta(name='google-adsense-account' content='ca-pub-8188712639195894')
     body.text-xl.grid(class="bg-gradient-to-r from-orange-100 to-amber-100")
         h1.text-5xl.mt-4.mx-auto.drop-shadow-xl Snus Clicker
@@ -28,7 +30,12 @@ html(lang="en")
             .col-start-3.h-96
                 .w-full
                     h3.text-center.text-3xl.mb-4 Affär
-                    .w-full.h-80.p-4
+                    .grid.grid-cols-2.h-10.w-64.mx-auto.gap-4
+                        .grid.border-2.border-slate-800.rounded-lg.justify-center.items-center.bg-rose-300#slide1
+                            p sida 1
+                        .grid.border-2.border-slate-800.rounded-lg.justify-center.items-center.bg-rose-50#slide2
+                            p sida 2
+                    .w-full.h-80.p-4#slide1Content                            
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade1.cursor-pointer
                             .grid.col-start-1.items-center.h-16
                                 img(src="/assets/red_swirl.png" alt="").w-14.mx-2.drop-shadow-lg
@@ -64,7 +71,7 @@ html(lang="en")
                                 p.text-end.mx-1 +8
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer
                             .grid.col-start-1.items-center.h-16
-                                img(src="/assets/velo_freeze.png" alt="").w-14.mx-2.drop-shadow-lg
+                                img(src="/assets/velo_freeze.png" alt="").w-14.mx-2.drop-shadow-lg.rotate-90
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
                                 .grid.justify-start
                                     p.mt-1 velo max freeze
@@ -72,5 +79,7 @@ html(lang="en")
                                     p#upgrade4Cost.col-start-1.col-span-8= `${upgrade4Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-1#upgrade4Amount= `${upgrade4Amount} st`
-                                p.text-end.mx-1 +8      
+                                p.text-end.mx-1 +40   
+                    .w-full.h-80.p-4#slide2Content.hidden
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2
         .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 

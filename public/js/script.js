@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("appVersion", newAppVersion);
   }
 
+  let clicksNonSave = parseInt(0);
   let clicks = parseInt(localStorage.getItem("clicks")) || 0;
   let cookies = parseFloat(localStorage.getItem("cookies")) || 0;
   let cookiesPerSecond =
@@ -77,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
   clickButton.addEventListener("click", () => {
     cookies += 1 * clickMultiplier;
     clicks += 1;
+    cpsCap();
+    setTimeout(() => {
+      clicksNonSave = 0;
+    }, 3000);
     localStorage.setItem("cookies", cookies);
     localStorage.setItem("clicks", clicks);
 
@@ -194,12 +199,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function updateCookiesPerSecond() {
-    cookies += cookiesPerSecond / 10;
+    cookies += cookiesPerSecond / 100;
     cookieElement.textContent = `${cookies.toFixed(0)} kr`;
     localStorage.setItem("cookies", cookies);
   }
 
-  setInterval(updateCookiesPerSecond, 100);
+  setInterval(updateCookiesPerSecond, 10);
 
   //nico-kick / mjölk
   function milkBar() {
@@ -269,6 +274,16 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade4Element.classList.remove("hidden");
     }
   }
+
+  function cpsCap() {
+    clicksNonSave += 1;
+    console.log(clicksNonSave);
+    if (clicksNonSave > 50) {
+      alert("Sluta snusa!!!!!");
+      clicksNonSave = 0; // Återställ clickCount
+    }
+  }
+
   //call functions
   milkBar();
   updateUpgradeStatus();
