@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   let cursorUpgradeCost =
-    parseInt(localStorage.getItem("cursorUpgradeCost")) || 100;
+    parseInt(localStorage.getItem("cursorUpgradeCost")) || 1000;
   let cursorUpgradeAmount =
     parseInt(localStorage.getItem("cursorUpgradeAmount")) || 0;
 
@@ -105,16 +105,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cookies >= cursorUpgradeCost) {
       cookies -= cursorUpgradeCost;
       clickMultiplier *= 2;
-      cursorUpgradeCost += 100 * Math.pow(3, cursorUpgradeAmount);
+      cursorUpgradeAmount += 1;
+      cursorUpgradeCost += 1000 * Math.pow(3, cursorUpgradeAmount);
       clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
-    }
-    cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(0)} kr`;
-    cursorUpgradeAmountElement.textContent = `${cursorUpgradeAmount} st`;
+      cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(
+        0
+      )} kr`;
+      cursorUpgradeAmountElement.textContent = `${cursorUpgradeAmount} st`;
 
-    localStorage.setItem("cookies", cookies);
-    localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
-    localStorage.setItem("cursorUpgradeCost", cursorUpgradeCost);
-    localStorage.setItem("cursorUpgradeAmount", cursorUpgradeAmount);
+      localStorage.setItem("cookies", cookies);
+      localStorage.setItem("clickMultiplier", clickMultiplier);
+      localStorage.setItem("cursorUpgradeCost", cursorUpgradeCost);
+      localStorage.setItem("cursorUpgradeAmount", cursorUpgradeAmount);
+    } else {
+      cursorUpgradeElement.classList.add("shake-animation");
+      cursorUpgradeElement.classList.add("border-red-600");
+      setTimeout(() => {
+        cursorUpgradeElement.classList.remove("shake-animation");
+        cursorUpgradeElement.classList.remove("border-red-600");
+      }, 500);
+    }
   });
 
   upgrade1Element.addEventListener("click", () => {
