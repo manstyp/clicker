@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("appVersion", newAppVersion);
   }
 
+  //MILKBAR
+  let count = 0;
+  let incrementAmount = 100 / (3 * 60 * 100);
+  let milkMultiplier = 1;
+  const milkBarElement = document.getElementById("milkBar");
+
+  //UPGRADES
   let cursorUpgradeCost =
     parseInt(localStorage.getItem("cursorUpgradeCost")) || 1000;
   let cursorUpgradeAmount =
@@ -25,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let upgrade4Cost = parseInt(localStorage.getItem("upgrade4Cost")) || 12000;
   let upgrade4Amount = parseInt(localStorage.getItem("upgrade4Amount")) || 0;
+
+  let upgrade5Cost = parseInt(localStorage.getItem("upgrade5Cost")) || 40000;
+  let upgrade5Amount = parseInt(localStorage.getItem("upgrade5Amount")) || 0;
 
   const clickButton = document.getElementById("clickButton");
   const cookieElement = document.getElementById("cookieCounter");
@@ -54,6 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const upgrade4CostElement = document.getElementById("upgrade4Cost");
   const upgrade4AmountElement = document.getElementById("upgrade4Amount");
 
+  const upgrade5Element = document.getElementById("upgrade5");
+  const upgrade5CostElement = document.getElementById("upgrade5Cost");
+  const upgrade5AmountElement = document.getElementById("upgrade5Amount");
+
   let clicksNonSave = parseInt(0);
   let clicks = parseInt(localStorage.getItem("clicks")) || 0;
   let cookies = parseFloat(localStorage.getItem("cookies")) || 0;
@@ -72,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //klick grej
   clickButton.addEventListener("click", () => {
-    cookies += 1 * clickMultiplier;
+    cookies += 1 * clickMultiplier * milkMultiplier;
     clicks += 1;
     cpsCap();
     setTimeout(() => {
@@ -100,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   upgrade4CostElement.textContent = `${upgrade4Cost} kr`;
   upgrade4AmountElement.textContent = `${upgrade4Amount} st`;
+
+  upgrade5CostElement.textContent = `${upgrade5Cost} kr`;
+  upgrade5AmountElement.textContent = `${upgrade5Amount} st`;
 
   cursorUpgradeElement.addEventListener("click", () => {
     if (cookies >= cursorUpgradeCost) {
@@ -234,6 +251,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  upgrade5Element.addEventListener("click", () => {
+    if (cookies >= upgrade5Cost) {
+      cookies -= upgrade5Cost;
+      cookiesPerSecond += 150;
+      upgrade5Amount += 1;
+      //upgrade6Element.classList.remove("hidden");
+      upgrade5Cost += 7000 * Math.pow(1.05, upgrade5Amount);
+      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
+        1
+      )} per sekund`;
+      upgrade5CostElement.textContent = `${upgrade5Cost.toFixed(0)} kr`;
+      upgrade5AmountElement.textContent = `${upgrade5Amount} st`;
+
+      localStorage.setItem("cookies", cookies);
+      localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
+      localStorage.setItem("upgrade5Cost", upgrade5Cost);
+      localStorage.setItem("upgrade5Amount", upgrade5Amount);
+    } else {
+      upgrade5Element.classList.add("shake-animation");
+      upgrade5Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade5Element.classList.remove("shake-animation");
+        upgrade5Element.classList.remove("border-red-600");
+      }, 500);
+    }
+  });
+
   function updateCookiesPerSecond() {
     cookies += cookiesPerSecond / 100;
     cookieElement.textContent = `${cookies.toFixed(0)} kr`;
@@ -255,6 +299,10 @@ document.addEventListener("DOMContentLoaded", function () {
       "upgrade4Unlocked",
       upgrade3Amount >= 1 ? "true" : "false"
     );
+    localStorage.setItem(
+      "upgrade5Unlocked",
+      upgrade4Amount >= 1 ? "true" : "false"
+    );
   }
 
   function showUpgrades() {
@@ -267,6 +315,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("upgrade4Unlocked") === "true") {
       upgrade4Element.classList.remove("hidden");
     }
+    if (localStorage.getItem("upgrade5Unlocked") === "true") {
+      upgrade5Element.classList.remove("hidden");
+    }
   }
 
   function cpsCap() {
@@ -276,6 +327,54 @@ document.addEventListener("DOMContentLoaded", function () {
       clicksNonSave = 0; // Återställ clickCount
     }
   }
+
+  function milkBar() {
+    let widthPercentage = 0;
+
+    const interval = setInterval(() => {
+      widthPercentage += incrementAmount;
+      document.documentElement.style.setProperty(
+        "--width-variable",
+        widthPercentage + "%"
+      );
+
+      if (widthPercentage >= 100) {
+        clearInterval(interval);
+        resetBar();
+      }
+    }, 10);
+
+    function resetBar() {
+      widthPercentage = 0;
+      document.documentElement.style.setProperty(
+        "--width-variable",
+        widthPercentage + "%"
+      );
+
+      if (count % 2 === 0) {
+        milkMultiplier = 3;
+        incrementAmount = 1000 / (3 * 60 * 100);
+        milkBarElement.classList.add("bg-blue-500");
+        milkBarElement.classList.remove("bg-red-600");
+        clickMultiplierElement.textContent = `Klickstyrka: ${
+          clickMultiplier * milkMultiplier
+        } mg`;
+      } else {
+        incrementAmount = 100 / (3 * 60 * 100);
+        milkMultiplier = 1;
+        milkBarElement.classList.remove("bg-blue-500");
+        milkBarElement.classList.add("bg-red-600");
+        clickMultiplierElement.textContent = `Klickstyrka: ${
+          clickMultiplier * milkMultiplier
+        } mg`;
+      }
+
+      count += 1;
+      milkBar();
+    }
+  }
+  //CALL FUNCTION!!!
+  milkBar();
 
   //call functions
   updateUpgradeStatus();

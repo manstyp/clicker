@@ -80,6 +80,18 @@ html(lang="en")
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-1#upgrade4Amount= `${upgrade4Amount} st`
                                 p.text-end.mx-1 +40   
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade5.cursor-pointer
+                            .grid.col-start-1.items-center.h-16
+                                img(src="/assets/xqs_tropical.png" draggable="false" ).w-14.mx-2.drop-shadow-lg
+                            .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
+                                .grid.justify-start
+                                    p.mt-1 XQS tropical
+                                .grid.items-start.grid-cols-10.justify-start
+                                    p#upgrade5Cost.col-start-1.col-span-8= `${upgrade5Cost} kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                p.p-1#upgrade5Amount= `${upgrade5Amount} st`
+                                p.text-end.mx-1 +150  
+                    //- SLIDE 2 CONTENT
                     .w-full.h-80.p-4#slide2Content.hidden
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#cursorUpgrade.cursor-pointer
                             .grid-col-start-1.items-center.h-16 
