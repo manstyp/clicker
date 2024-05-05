@@ -26,7 +26,7 @@ html(lang="en")
                     p.text-xl#cookiesPerSecond.text-center= `${cookiesPerSecond} kr per sekund`
                 .div.column-start-2.mx-auto
                     button.w-80.h-80.my-2.rounded-full#clickButton
-                        img(src="/assets/snus.png" alt="").rotating-image.drop-shadow-xl
+                        img(src="/assets/snus.png" draggable="false").rotating-image.drop-shadow-xl
             .col-start-3.h-96
                 .w-full
                     h3.text-center.text-3xl.mb-4 Affär
@@ -38,7 +38,7 @@ html(lang="en")
                     .w-full.h-80.p-4#slide1Content                            
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade1.cursor-pointer
                             .grid.col-start-1.items-center.h-16
-                                img(src="/assets/red_swirl.png" alt="").w-14.mx-2.drop-shadow-lg
+                                img(src="/assets/red_swirl.png" draggable="false").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]")
                                 .grid.justify-start
                                     p.mt-1 Volt Red Swirl
@@ -49,7 +49,7 @@ html(lang="en")
                                 p.text-end.mx-1 +0.1
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade2.cursor-pointer
                             .grid.col-start-1.items-center.h-16
-                                img(src="/assets/zone_x.png" alt="").w-14.mx-2.drop-shadow-lg
+                                img(src="/assets/zone_x.png" draggable="false").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]")
                                 .grid.justify-start
                                     p.mt-1 zone x cold blast
@@ -60,7 +60,7 @@ html(lang="en")
                                 p.text-end.mx-1 +1
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade3.cursor-pointer
                             .grid.col-start-1.items-center.h-16
-                                img(src="/assets/one.png" alt="").w-14.mx-2.drop-shadow-lg
+                                img(src="/assets/one.png" draggable="false").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
                                 .grid.justify-start
                                     p.mt-1 one blå
@@ -71,7 +71,7 @@ html(lang="en")
                                 p.text-end.mx-1 +8
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer
                             .grid.col-start-1.items-center.h-16
-                                img(src="/assets/velo_freeze.png" alt="").w-14.mx-2.drop-shadow-lg.rotate-90
+                                img(src="/assets/velo_freeze.png" draggable="false").w-14.mx-2.drop-shadow-lg.rotate-90
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
                                 .grid.justify-start
                                     p.mt-1 velo max freeze
@@ -83,13 +83,13 @@ html(lang="en")
                     .w-full.h-80.p-4#slide2Content.hidden
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#cursorUpgrade.cursor-pointer
                             .grid-col-start-1.items-center.h-16 
-                                img(src="/assets/cursor.png").w-12(class="rotate-[-20deg]").ml-1
+                                img(src="/assets/cursor.png" draggable="false" class="rotate-[-20deg]").w-12.ml-1
                             .grid-col-start.2-col-span-3.items-start(class="mx-[-2.5rem]") 
                                 .grid.justify-start
                                     p.mt-1 klickstyrka 
                                 .grid.items-start.grid-cols-10.justify-start
-                                    p.col-start-1.col-span-8= `fett dyr kr`
+                                    p#cursorUpgradeCost.col-start-1.col-span-8= `${cursorUpgradeCost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade4Amount= ` 1 st`
-                                p.text-end.mx-1 +40   
+                                p.p-1#cursorUpgradeAmount= ` ${cursorUpgradeAmount} st`
+                                p.text-end.mx-1 2x 
         .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 

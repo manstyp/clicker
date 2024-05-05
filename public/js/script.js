@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("appVersion", newAppVersion);
   }
 
+  let cursorUpgradeCost =
+    parseInt(localStorage.getItem("cursorUpgradeCost")) || 100;
+  let cursorUpgradeAmount =
+    parseInt(localStorage.getItem("cursorUpgradeAmount")) || 0;
+
   let upgrade1Cost = parseInt(localStorage.getItem("upgrade1Cost")) || 20;
   let upgrade1Amount = parseInt(localStorage.getItem("upgrade1Amount")) || 0;
 
@@ -26,6 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const clickCounterElement = document.getElementById("clickCounter");
   const cookiesPerSecondElement = document.getElementById("cookiesPerSecond");
   const clickMultiplierElement = document.getElementById("clickMultiplier");
+
+  const cursorUpgradeElement = document.getElementById("cursorUpgrade");
+  const cursorUpgradeCostElement = document.getElementById("cursorUpgradeCost");
+  const cursorUpgradeAmountElement = document.getElementById(
+    "cursorUpgradeAmount"
+  );
 
   const upgrade1Element = document.getElementById("upgrade1");
   const upgrade1CostElement = document.getElementById("upgrade1Cost");
@@ -75,6 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Uppgraderingar
+  cursorUpgradeCostElement.textContent = `${cursorUpgradeCost} kr`;
+  cursorUpgradeAmountElement.textContent = `${cursorUpgradeAmount} st`;
+
   upgrade1CostElement.textContent = `${upgrade1Cost} kr`;
   upgrade1AmountElement.textContent = `${upgrade1Amount} st`;
 
@@ -87,6 +101,22 @@ document.addEventListener("DOMContentLoaded", function () {
   upgrade4CostElement.textContent = `${upgrade4Cost} kr`;
   upgrade4AmountElement.textContent = `${upgrade4Amount} st`;
 
+  cursorUpgradeElement.addEventListener("click", () => {
+    if (cookies >= cursorUpgradeCost) {
+      cookies -= cursorUpgradeCost;
+      clickMultiplier *= 2;
+      cursorUpgradeCost += 100 * Math.pow(3, cursorUpgradeAmount);
+      clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
+    }
+    cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(0)} kr`;
+    cursorUpgradeAmountElement.textContent = `${cursorUpgradeAmount} st`;
+
+    localStorage.setItem("cookies", cookies);
+    localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
+    localStorage.setItem("cursorUpgradeCost", cursorUpgradeCost);
+    localStorage.setItem("cursorUpgradeAmount", cursorUpgradeAmount);
+  });
+
   upgrade1Element.addEventListener("click", () => {
     if (cookies >= upgrade1Cost) {
       cookies -= upgrade1Cost;
@@ -94,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade1Amount += 1;
       upgrade2Element.classList.remove("hidden");
       upgrade1Cost += 6 * Math.pow(1.05, upgrade1Amount);
-      //upgrade2Element.classList.remove("hidden");
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
@@ -232,7 +261,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function cpsCap() {
     clicksNonSave += 1;
-    console.log(clicksNonSave);
     if (clicksNonSave > 50) {
       alert("Sluta snusa!!!!!");
       clicksNonSave = 0; // Återställ clickCount
