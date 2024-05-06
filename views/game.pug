@@ -7,7 +7,7 @@ html(lang="en")
         script(src="https://cdn.tailwindcss.com") 
         script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         link(rel="stylesheet" href="/css/style.css")
-        script(src="/js/script.js") 
+        script(src="/js/version.js") 
         script(src="/js/upgrades.js") 
         script(src="/js/slides.js") 
         meta(name='google-adsense-account' content='ca-pub-8188712639195894')
@@ -114,11 +114,11 @@ html(lang="en")
                                 p.p-1#upgrade7Amount.text-end= `${upgrade7Amount} st`
                                 p.text-end.mx-1 +2500
                     //- SLIDE 2 CONTENT
-                    .w-full.h-80.p-4#slide2Content.hidden
+                    .w-full.h-80.p-4#slide2Content.hidden.gap-4
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#cursorUpgrade.cursor-pointer
                             .grid-col-start-1.items-center.h-16 
                                 img(src="/assets/cursor.png" draggable="false" class="rotate-[-20deg]").w-12.ml-1
-                            .grid-col-start.2-col-span-3.items-start(class="mx-[-2.5rem]") 
+                            .grid-col-start-2.col-span-3.items-start(class="mx-[-2.5rem]")
                                 .grid.justify-start
                                     p.mt-1 klickstyrka 
                                 .grid.items-start.grid-cols-10.justify-start
