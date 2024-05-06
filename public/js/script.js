@@ -37,8 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
   let upgrade4Cost = parseInt(localStorage.getItem("upgrade4Cost")) || 12000;
   let upgrade4Amount = parseInt(localStorage.getItem("upgrade4Amount")) || 0;
 
-  let upgrade5Cost = parseInt(localStorage.getItem("upgrade5Cost")) || 40000;
-  let upgrade5Amount = parseInt(localStorage.getItem("upgrade5Amount")) || 0;
+  let upgrade5Cost = parseInt(localStorage.getItem("upgrade6Cost")) || 40000;
+  let upgrade5Amount = parseInt(localStorage.getItem("upgrade6Amount")) || 0;
+
+  let upgrade6Cost = parseInt(localStorage.getItem("upgrade6Cost")) || 120000;
+  let upgrade6Amount = parseInt(localStorage.getItem("upgrade6Amount")) || 0;
+
+  let upgrade7Cost = parseInt(localStorage.getItem("upgrade7Cost")) || 500000;
+  let upgrade7Amount = parseInt(localStorage.getItem("upgrade7Amount")) || 0;
 
   const clickButton = document.getElementById("clickButton");
   const cookieElement = document.getElementById("cookieCounter");
@@ -71,6 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const upgrade5Element = document.getElementById("upgrade5");
   const upgrade5CostElement = document.getElementById("upgrade5Cost");
   const upgrade5AmountElement = document.getElementById("upgrade5Amount");
+
+  const upgrade6Element = document.getElementById("upgrade6");
+  const upgrade6CostElement = document.getElementById("upgrade6Cost");
+  const upgrade6AmountElement = document.getElementById("upgrade6Amount");
+
+  const upgrade7Element = document.getElementById("upgrade7");
+  const upgrade7CostElement = document.getElementById("upgrade7Cost");
+  const upgrade7AmountElement = document.getElementById("upgrade7Amount");
 
   let clicksNonSave = parseInt(0);
   let clicks = parseInt(localStorage.getItem("clicks")) || 0;
@@ -123,12 +137,18 @@ document.addEventListener("DOMContentLoaded", function () {
   upgrade5CostElement.textContent = `${upgrade5Cost} kr`;
   upgrade5AmountElement.textContent = `${upgrade5Amount} st`;
 
+  upgrade6CostElement.textContent = `${upgrade6Cost} kr`;
+  upgrade6AmountElement.textContent = `${upgrade6Amount} st`;
+
+  upgrade7CostElement.textContent = `${upgrade7Cost} kr`;
+  upgrade7AmountElement.textContent = `${upgrade7Amount} st`;
+
   cursorUpgradeElement.addEventListener("click", () => {
     if (cookies >= cursorUpgradeCost) {
       cookies -= cursorUpgradeCost;
       clickMultiplier *= 2;
       cursorUpgradeAmount += 1;
-      cursorUpgradeCost += 1000 * Math.pow(2, cursorUpgradeAmount);
+      cursorUpgradeCost += 1000 * Math.pow(2.6, cursorUpgradeAmount);
       clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
       cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(
         0
@@ -236,6 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookiesPerSecond += 40;
       upgrade4Amount += 1;
       upgrade4Cost += 2000 * Math.pow(1.05, upgrade4Amount);
+      upgrade5Element.classList.remove("hidden");
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
@@ -261,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookies -= upgrade5Cost;
       cookiesPerSecond += 150;
       upgrade5Amount += 1;
-      //upgrade6Element.classList.remove("hidden");
+      upgrade6Element.classList.remove("hidden");
       upgrade5Cost += 7000 * Math.pow(1.05, upgrade5Amount);
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
@@ -279,6 +300,60 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         upgrade5Element.classList.remove("shake-animation");
         upgrade5Element.classList.remove("border-red-600");
+      }, 500);
+    }
+  });
+
+  upgrade6Element.addEventListener("click", () => {
+    if (cookies >= upgrade6Cost) {
+      cookies -= upgrade6Cost;
+      cookiesPerSecond += 500;
+      upgrade6Amount += 1;
+      upgrade7Element.classList.remove("hidden");
+      upgrade6Cost += 30000 * Math.pow(1.05, upgrade6Amount);
+      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
+        1
+      )} per sekund`;
+      upgrade6CostElement.textContent = `${upgrade6Cost.toFixed(0)} kr`;
+      upgrade6AmountElement.textContent = `${upgrade6Amount} st`;
+
+      localStorage.setItem("cookies", cookies);
+      localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
+      localStorage.setItem("upgrade6Cost", upgrade6Cost);
+      localStorage.setItem("upgrade6Amount", upgrade6Amount);
+    } else {
+      upgrade6Element.classList.add("shake-animation");
+      upgrade6Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade6Element.classList.remove("shake-animation");
+        upgrade6Element.classList.remove("border-red-600");
+      }, 500);
+    }
+  });
+
+  upgrade7Element.addEventListener("click", () => {
+    if (cookies >= upgrade7Cost) {
+      cookies -= upgrade7Cost;
+      cookiesPerSecond += 2500;
+      upgrade7Amount += 1;
+      //upgrade8Element.classList.remove("hidden");
+      upgrade7Cost += 100000 * Math.pow(1.05, upgrade7Amount);
+      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
+        1
+      )} per sekund`;
+      upgrade7CostElement.textContent = `${upgrade7Cost.toFixed(0)} kr`;
+      upgrade7AmountElement.textContent = `${upgrade7Amount} st`;
+
+      localStorage.setItem("cookies", cookies);
+      localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
+      localStorage.setItem("upgrade7Cost", upgrade7Cost);
+      localStorage.setItem("upgrade7Amount", upgrade7Amount);
+    } else {
+      upgrade7Element.classList.add("shake-animation");
+      upgrade7Element.classList.add("border-red-600");
+      setTimeout(() => {
+        upgrade7Element.classList.remove("shake-animation");
+        upgrade7Element.classList.remove("border-red-600");
       }, 500);
     }
   });
@@ -308,6 +383,14 @@ document.addEventListener("DOMContentLoaded", function () {
       "upgrade5Unlocked",
       upgrade4Amount >= 1 ? "true" : "false"
     );
+    localStorage.setItem(
+      "upgrade6Unlocked",
+      upgrade5Amount >= 1 ? "true" : "false"
+    );
+    localStorage.setItem(
+      "upgrade7Unlocked",
+      upgrade6Amount >= 1 ? "true" : "false"
+    );
   }
 
   function showUpgrades() {
@@ -322,6 +405,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (localStorage.getItem("upgrade5Unlocked") === "true") {
       upgrade5Element.classList.remove("hidden");
+    }
+    if (localStorage.getItem("upgrade6Unlocked") === "true") {
+      upgrade6Element.classList.remove("hidden");
+    }
+    if (localStorage.getItem("upgrade7Unlocked") === "true") {
+      upgrade7Element.classList.remove("hidden");
     }
   }
 

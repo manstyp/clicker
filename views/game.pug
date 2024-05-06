@@ -45,9 +45,9 @@ html(lang="en")
                                 .grid.items-start.grid-cols-10.justify-start
                                     p#upgrade1Cost.col-start-1.col-span-8= `${upgrade1Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade1Amount= `${upgrade1Amount} st`
+                                p.p-1#upgrade1Amount.text-end= `${upgrade1Amount} st`
                                 p.text-end.mx-1 +0.1
-                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade2.cursor-pointer
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade2.cursor-pointer.hidden
                             .grid.col-start-1.items-center.h-16
                                 img(src="/assets/zone_x.png" draggable="false").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]")
@@ -56,9 +56,9 @@ html(lang="en")
                                 .grid.items-start.grid-cols-10.justify-start
                                     p#upgrade2Cost.col-start-1.col-span-8= `${upgrade2Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade2Amount= `${upgrade2Amount} st`
+                                p.p-1#upgrade2Amount.text-end= `${upgrade2Amount} st`
                                 p.text-end.mx-1 +1
-                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade3.cursor-pointer
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade3.cursor-pointer.hidden
                             .grid.col-start-1.items-center.h-16
                                 img(src="/assets/one.png" draggable="false").w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
@@ -67,9 +67,9 @@ html(lang="en")
                                 .grid.items-start.grid-cols-10.justify-start
                                     p#upgrade3Cost.col-start-1.col-span-8= `${upgrade3Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade3Amount= `${upgrade3Amount} st`
+                                p.p-1#upgrade3Amount.text-end= `${upgrade3Amount} st`
                                 p.text-end.mx-1 +8
-                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade4.cursor-pointer.hidden
                             .grid.col-start-1.items-center.h-16
                                 img(src="/assets/velo_freeze.png" draggable="false").w-14.mx-2.drop-shadow-lg.rotate-90
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
@@ -78,9 +78,9 @@ html(lang="en")
                                 .grid.items-start.grid-cols-10.justify-start
                                     p#upgrade4Cost.col-start-1.col-span-8= `${upgrade4Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade4Amount= `${upgrade4Amount} st`
+                                p.p-1#upgrade4Amount.text-end= `${upgrade4Amount} st`
                                 p.text-end.mx-1 +40   
-                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade5.cursor-pointer
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade5.cursor-pointer.hidden
                             .grid.col-start-1.items-center.h-16
                                 img(src="/assets/xqs_tropical.png" draggable="false" ).w-14.mx-2.drop-shadow-lg
                             .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
@@ -89,8 +89,30 @@ html(lang="en")
                                 .grid.items-start.grid-cols-10.justify-start
                                     p#upgrade5Cost.col-start-1.col-span-8= `${upgrade5Cost} kr`
                             .grid.col-start-5.justify-end.grid.items-center
-                                p.p-1#upgrade5Amount= `${upgrade5Amount} st`
+                                p.p-1#upgrade5Amount.text-end= `${upgrade5Amount} st`
                                 p.text-end.mx-1 +150  
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade6.cursor-pointer.hidden
+                            .grid.col-start-1.items-center.h-16
+                                img(src="/assets/loop_jalapeno.png" draggable="false" ).w-14.mx-2.drop-shadow-lg
+                            .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
+                                .grid.justify-start
+                                    p.mt-1 loop jalapeno lime
+                                .grid.items-start.grid-cols-10.justify-start
+                                    p#upgrade6Cost.col-start-1.col-span-8= `${upgrade6Cost} kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                p.p-1#upgrade6Amount.text-end= `${upgrade6Amount} st`
+                                p.text-end.mx-1 +500
+                        .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#upgrade7.cursor-pointer.hidden
+                            .grid.col-start-1.items-center.h-16
+                                img(src="/assets/ettan.png" draggable="false" ).w-14.mx-2.drop-shadow-lg
+                            .grid.col-start-2.col-span-3.items-start(class="mx-[-2.5rem]") 
+                                .grid.justify-start
+                                    p.mt-1 ettan original
+                                .grid.items-start.grid-cols-10.justify-start
+                                    p#upgrade7Cost.col-start-1.col-span-8= `${upgrade7Cost} kr`
+                            .grid.col-start-5.justify-end.grid.items-center
+                                p.p-1#upgrade7Amount.text-end= `${upgrade7Amount} st`
+                                p.text-end.mx-1 +2500
                     //- SLIDE 2 CONTENT
                     .w-full.h-80.p-4#slide2Content.hidden
                         .w-50.h-20.grid.grid-cols-5.p-1.rounded-lg.border-2.border-slate-800.drop-shadow-lg.my-2#cursorUpgrade.cursor-pointer
