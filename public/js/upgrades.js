@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //UPGRADES
   let cursorUpgradeCost =
-    parseInt(localStorage.getItem("cursorUpgradeCost")) || 100033123121;
+    parseInt(localStorage.getItem("cursorUpgradeCost")) || 1000;
   let cursorUpgradeAmount =
     parseInt(localStorage.getItem("cursorUpgradeAmount")) || 0;
 
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //uppdatera text content
   clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
   clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
-  cookieElement.textContent = `${cookies.toFixed(0)} kr`;
+  cookieElement.textContent = `${formatNumber(cookies)} kr`;
   cookiesPerSecondElement.textContent = `${cookiesPerSecond} per sekund`;
 
   //klick grej
@@ -102,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("cookies", cookies);
     localStorage.setItem("clicks", clicks);
 
-    cookieElement.textContent = `${cookies.toFixed(0)} kr`;
-    clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
+    cookieElement.textContent = `${formatNumber(cookies)} kr`;
+    clickCounterElement.textContent = `Totala Klicks: ${formatNumber(clicks)}`;
   });
 
   // Uppgraderingar
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
-      upgrade1CostElement.textContent = `${upgrade1Cost.toFixed(0)} kr`;
+      upgrade1CostElement.textContent = `${formatNumber(upgrade1Cost)} kr`;
       upgrade1AmountElement.textContent = `${upgrade1Amount} st`;
 
       localStorage.setItem("cookies", cookies);
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
-      upgrade2CostElement.textContent = `${upgrade2Cost.toFixed(0)} kr`;
+      upgrade2CostElement.textContent = `${formatNumber(upgrade2Cost)} kr`;
       upgrade2AmountElement.textContent = `${upgrade2Amount} st`;
 
       localStorage.setItem("cookies", cookies);
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
-      upgrade3CostElement.textContent = `${upgrade3Cost.toFixed(0)} kr`;
+      upgrade3CostElement.textContent = `${formatNumber(upgrade3Cost)} kr`;
       upgrade3AmountElement.textContent = `${upgrade3Amount} st`;
 
       localStorage.setItem("cookies", cookies);
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
-      upgrade4CostElement.textContent = `${upgrade4Cost.toFixed(0)} kr`;
+      upgrade4CostElement.textContent = `${formatNumber(upgrade4Cost)} kr`;
       upgrade4AmountElement.textContent = `${upgrade4Amount} st`;
 
       localStorage.setItem("cookies", cookies);
@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
         1
       )} per sekund`;
-      upgrade5CostElement.textContent = `${upgrade5Cost.toFixed(0)} kr`;
+      upgrade5CostElement.textContent = `${formatNumber(upgrade5Cost)} kr`;
       upgrade5AmountElement.textContent = `${upgrade5Amount} st`;
 
       localStorage.setItem("cookies", cookies);
@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateCookiesPerSecond() {
     cookies += cookiesPerSecond / 100;
-    cookieElement.textContent = `${cookies.toFixed(0)} kr`;
+    cookieElement.textContent = `${formatNumber(cookies)} kr`;
     localStorage.setItem("cookies", cookies);
   }
 
@@ -468,10 +468,19 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(logCPS, 1000);
 
   function formatNumber(number) {
-    if (number >= 1000000) {
-      return (number / 1000000).toFixed(1) + " miljoner";
+    if (number < 10) {
+      return number.toFixed(1);
+    } else if (number >= 10 && number < 100000) {
+      return number.toFixed(0);
+    } else if (number >= 100000 && number < 300000) {
+      return (number / 1000).toFixed(1) + " tusen";
+    } else if (number >= 300000 && number < 1000000) {
+      return (number / 1000).toFixed(0) + " tusen";
+    } else if (number >= 1000000 && number <= 10000000) {
+      return (number / 1000000).toFixed(2) + " miljoner";
+    } else if (number >= 10000000) {
+      return number.toFixed(1) + " miljoner";
     }
-    return number;
   }
 
   //call functions
