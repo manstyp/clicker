@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (number >= 1000000 && number <= 10000000) {
       return (number / 1000000).toFixed(2) + " miljoner";
     } else if (number >= 10000000) {
-      return number.toFixed(1) + " miljoner";
+      return (number / 1000000).toFixed(1) + " miljoner";
     }
   }
 
