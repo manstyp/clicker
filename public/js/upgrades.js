@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let count = 0;
   let incrementAmount = 100 / (3 * 60 * 100);
   let milkMultiplier = 1;
+  let milkCountdown = 180;
   const milkBarElement = document.getElementById("milkBar");
+  const milkCountdownElement = document.getElementById("milkCountdown");
 
   //CPS räkning
   let clickCount = 0;
@@ -421,6 +423,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const interval = setInterval(() => {
       widthPercentage += incrementAmount;
+      milkCountdown -= 0.01;
+      milkCountdownElement.textContent = `nico kick om ${milkCountdown.toFixed(
+        0
+      )}`;
       document.documentElement.style.setProperty(
         "--width-variable",
         widthPercentage + "%"
@@ -434,6 +440,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function resetBar() {
       widthPercentage = 0;
+      milkCountdown = 180;
       document.documentElement.style.setProperty(
         "--width-variable",
         widthPercentage + "%"
@@ -447,6 +454,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clickMultiplierElement.textContent = `Klickstyrka: ${
           clickMultiplier * milkMultiplier
         } mg`;
+        milkCountdownElement.classList.add("hidden");
       } else {
         incrementAmount = 100 / (3 * 60 * 100);
         milkMultiplier = 1;
@@ -455,6 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clickMultiplierElement.textContent = `Klickstyrka: ${
           clickMultiplier * milkMultiplier
         } mg`;
+        milkCountdownElement.classList.remove("hidden");
       }
 
       count += 1;
