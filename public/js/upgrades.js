@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookies -= cursorUpgradeCost;
       clickMultiplier *= 2;
       cursorUpgradeAmount += 1;
-      cursorUpgradeCost += 1000 * Math.pow(2.6, cursorUpgradeAmount);
+      cursorUpgradeCost += 1000 * Math.pow(2.2, cursorUpgradeAmount);
       clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
       cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(
         0
