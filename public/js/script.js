@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let upgrade4Cost = parseInt(localStorage.getItem("upgrade4Cost")) || 12000;
   let upgrade4Amount = parseInt(localStorage.getItem("upgrade4Amount")) || 0;
 
-  let upgrade5Cost = parseInt(localStorage.getItem("upgrade6Cost")) || 40000;
-  let upgrade5Amount = parseInt(localStorage.getItem("upgrade6Amount")) || 0;
+  let upgrade5Cost = parseInt(localStorage.getItem("upgrade5Cost")) || 40000;
+  let upgrade5Amount = parseInt(localStorage.getItem("upgrade5Amount")) || 0;
 
   let upgrade6Cost = parseInt(localStorage.getItem("upgrade6Cost")) || 120000;
   let upgrade6Amount = parseInt(localStorage.getItem("upgrade6Amount")) || 0;
