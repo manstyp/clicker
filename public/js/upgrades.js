@@ -86,7 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //uppdatera text content
   clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
-  clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
+  clickMultiplierElement.textContent = `Klickstyrka: ${formatNumber(
+    clickMultiplier
+  )} mg`;
   cookieElement.textContent = `${formatNumber(cookies)} kr`;
   cookiesPerSecondElement.textContent = `${formatNumber(
     cookiesPerSecond
@@ -170,9 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade1Amount += 1;
       upgrade2Element.classList.remove("hidden");
       upgrade1Cost += 6 * Math.pow(1.05, upgrade1Amount);
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
-      )} per sekund`;
+
       upgrade1CostElement.textContent = `${formatNumber(upgrade1Cost)} kr`;
       upgrade1AmountElement.textContent = `${upgrade1Amount} st`;
 
@@ -197,8 +197,8 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade2Amount += 1;
       upgrade3Element.classList.remove("hidden");
       upgrade2Cost += 25 * Math.pow(1.05, upgrade2Amount);
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
+      cookiesPerSecondElement.textContent = `${formatNumber(
+        cookiesPerSecond
       )} per sekund`;
       upgrade2CostElement.textContent = `${formatNumber(upgrade2Cost)} kr`;
       upgrade2AmountElement.textContent = `${upgrade2Amount} st`;
@@ -224,8 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade3Amount += 1;
       upgrade4Element.classList.remove("hidden");
       upgrade3Cost += 200 * Math.pow(1.05, upgrade3Amount);
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
+      cookiesPerSecondElement.textContent = `${formatNumber(
+        cookiesPerSecond
       )} per sekund`;
       upgrade3CostElement.textContent = `${formatNumber(upgrade3Cost)} kr`;
       upgrade3AmountElement.textContent = `${upgrade3Amount} st`;
@@ -251,8 +251,8 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade4Amount += 1;
       upgrade4Cost += 2000 * Math.pow(1.05, upgrade4Amount);
       upgrade5Element.classList.remove("hidden");
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
+      cookiesPerSecondElement.textContent = `${formatNumber(
+        cookiesPerSecond
       )} per sekund`;
       upgrade4CostElement.textContent = `${formatNumber(upgrade4Cost)} kr`;
       upgrade4AmountElement.textContent = `${upgrade4Amount} st`;
@@ -278,8 +278,8 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade5Amount += 1;
       upgrade6Element.classList.remove("hidden");
       upgrade5Cost += 7000 * Math.pow(1.05, upgrade5Amount);
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
+      cookiesPerSecondElement.textContent = `${formatNumber(
+        cookiesPerSecond
       )} per sekund`;
       upgrade5CostElement.textContent = `${formatNumber(upgrade5Cost)} kr`;
       upgrade5AmountElement.textContent = `${upgrade5Amount} st`;
@@ -467,7 +467,9 @@ document.addEventListener("DOMContentLoaded", function () {
     clickCount = 0;
     cookiesPerSecondCalculated =
       parseFloat(cps.toFixed(1)) + parseFloat(cookiesPerSecond.toFixed(1));
-    cookiesPerSecondElement.textContent = `${cookiesPerSecondCalculated} per sekund`;
+    cookiesPerSecondElement.textContent = `${formatNumber(
+      cookiesPerSecondCalculated
+    )} per sekund`;
   }
   setInterval(logCPS, 1000);
 
