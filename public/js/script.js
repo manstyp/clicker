@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let milkMultiplier = 1;
   const milkBarElement = document.getElementById("milkBar");
 
+  //CPS räkning
+  let clickCount = 0;
+  let cps = 0;
+
   //UPGRADES
   let cursorUpgradeCost =
     parseInt(localStorage.getItem("cursorUpgradeCost")) || 1000;
@@ -80,14 +84,15 @@ document.addEventListener("DOMContentLoaded", function () {
   clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
   clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
   cookieElement.textContent = `${cookies.toFixed(0)} kr`;
-  cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-    1
-  )} per sekund`;
+  cookiesPerSecondElement.textContent = `${
+    parseFloat(cps.toFixed(1)) + parseFloat(cookiesPerSecond.toFixed(1))
+  } per sekund`;
 
   //klick grej
   clickButton.addEventListener("click", () => {
     cookies += 1 * clickMultiplier * milkMultiplier;
     clicks += 1;
+    clickCount++;
     cpsCap();
     setTimeout(() => {
       clicksNonSave = 0;
@@ -123,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cookies -= cursorUpgradeCost;
       clickMultiplier *= 2;
       cursorUpgradeAmount += 1;
-      cursorUpgradeCost += 1000 * Math.pow(3, cursorUpgradeAmount);
+      cursorUpgradeCost += 1000 * Math.pow(2, cursorUpgradeAmount);
       clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
       cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(
         0
@@ -373,10 +378,19 @@ document.addEventListener("DOMContentLoaded", function () {
       milkBar();
     }
   }
-  //CALL FUNCTION!!!
-  milkBar();
+
+  function logCPS() {
+    cps = clickCount * clickMultiplier * milkMultiplier;
+    clickCount = 0;
+    cookiesPerSecondElement.textContent = `${
+      parseFloat(cps.toFixed(1)) + parseFloat(cookiesPerSecond.toFixed(1))
+    } per sekund`;
+  }
+  setInterval(logCPS, 1000);
 
   //call functions
   updateUpgradeStatus();
   showUpgrades();
+  milkBar();
+  logCPS();
 });
