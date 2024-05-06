@@ -88,7 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
   clickCounterElement.textContent = `Totala Klicks: ${clicks}`;
   clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
   cookieElement.textContent = `${formatNumber(cookies)} kr`;
-  cookiesPerSecondElement.textContent = `${cookiesPerSecond} per sekund`;
+  cookiesPerSecondElement.textContent = `${formatNumber(
+    cookiesPerSecond
+  )} per sekund`;
 
   //klick grej
   clickButton.addEventListener("click", () => {
@@ -139,9 +141,11 @@ document.addEventListener("DOMContentLoaded", function () {
       clickMultiplier *= 2;
       cursorUpgradeAmount += 1;
       cursorUpgradeCost += 1000 * Math.pow(2.2, cursorUpgradeAmount);
-      clickMultiplierElement.textContent = `Klickstyrka: ${clickMultiplier} mg`;
-      cursorUpgradeCostElement.textContent = `${cursorUpgradeCost.toFixed(
-        0
+      clickMultiplierElement.textContent = `Klickstyrka: ${formatNumber(
+        clickMultiplier
+      )} mg`;
+      cursorUpgradeCostElement.textContent = `${formatNumber(
+        cursorUpgradeCost
       )} kr`;
       cursorUpgradeAmountElement.textContent = `${cursorUpgradeAmount} st`;
 
@@ -301,8 +305,8 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade6Amount += 1;
       upgrade7Element.classList.remove("hidden");
       upgrade6Cost += 30000 * Math.pow(1.05, upgrade6Amount);
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
+      cookiesPerSecondElement.textContent = `${formatNumber(
+        cookiesPerSecond
       )} per sekund`;
       upgrade6CostElement.textContent = `${upgrade6Cost.toFixed(0)} kr`;
       upgrade6AmountElement.textContent = `${upgrade6Amount} st`;
@@ -328,8 +332,8 @@ document.addEventListener("DOMContentLoaded", function () {
       upgrade7Amount += 1;
       //upgrade8Element.classList.remove("hidden");
       upgrade7Cost += 100000 * Math.pow(1.05, upgrade7Amount);
-      cookiesPerSecondElement.textContent = `${cookiesPerSecond.toFixed(
-        1
+      cookiesPerSecondElement.textContent = `${formatNumber(
+        cookiesPerSecond
       )} per sekund`;
       upgrade7CostElement.textContent = `${upgrade7Cost.toFixed(0)} kr`;
       upgrade7AmountElement.textContent = `${upgrade7Amount} st`;
@@ -480,6 +484,10 @@ document.addEventListener("DOMContentLoaded", function () {
       return (number / 1000000).toFixed(2) + " miljoner";
     } else if (number >= 10000000) {
       return (number / 1000000).toFixed(1) + " miljoner";
+    } else if (number >= 300000000 && number < 1000000000) {
+      return (number / 1000000).toFixed(0) + " miljoner";
+    } else if (number >= 1000000000) {
+      return (number / 1000000000).toFixed(2) + " miljarder";
     }
   }
 
