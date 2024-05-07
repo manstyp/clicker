@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const interval = setInterval(() => {
       widthPercentage += incrementAmount;
       milkCountdown -= 0.01;
-      milkCountdownElement.textContent = `nico kick om ${milkCountdown.toFixed(
+      milkCountdownElement.textContent = `nicokick om ${milkCountdown.toFixed(
         0
       )}`;
       document.documentElement.style.setProperty(

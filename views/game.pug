@@ -5,11 +5,12 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title Snus Clicker
         script(src="https://cdn.tailwindcss.com") 
-        script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
+        // script(src="https://kit.fontawesome.com/f56ab63edd.js" crossorigin="anonymous") 
         link(rel="stylesheet" href="/css/style.css")
         script(src="/js/version.js") 
         script(src="/js/upgrades.js") 
         script(src="/js/slides.js") 
+        script(src="/js/clickAnimation.js") 
         meta(name='google-adsense-account' content='ca-pub-8188712639195894')
     body.text-xl.grid(class="bg-gradient-to-r from-orange-100 to-amber-100")
         h1.text-5xl.mt-4.mx-auto.drop-shadow-xl Snus Clicker
@@ -20,12 +21,14 @@ html(lang="en")
                     .w-full.h-80.p-4.rounded-lg.border-2.border-slate-800.mx-4
                         h2.text-xl#clickCounter.ml-2= `Totala klicks: ${clicks}`
                         h2.text-xl.ml-2#clickMultiplier= `Klickstyrka: ${clickMultiplier} mg`
+                    //    h2.text-xl.ml-2#milkMultiplier=`nicokick styrka: ${milkMultiplier}x`
             .col-start-2.h-96.grid
                 .h-8.my-8.column-start-2
                     p.text-xl#cookieCounter.text-center.content-center= `${cookies} kr`
                     p.text-xl#cookiesPerSecond.text-center= `${cookiesPerSecond} kr per sekund`
                 .div.column-start-2.mx-auto
                     button.w-80.h-80.my-2.rounded-full#clickButton
+                        #textContent
                         img(src="/assets/snus.png" draggable="false").rotating-image.drop-shadow-xl
             .col-start-3.h-96
                 .w-full
@@ -126,5 +129,5 @@ html(lang="en")
                             .grid.col-start-5.justify-end.grid.items-center
                                 p.p-1#cursorUpgradeAmount= ` ${cursorUpgradeAmount} st`
                                 p.text-end.mx-1 2x 
-        p.absolute.bottom-0.mb-4.opacity-50#milkCountdown.ml-1= `nico kick om ${milkCountdown}`
+        p.absolute.bottom-0.mb-4.opacity-50#milkCountdown.ml-1= `nicokick om ${milkCountdown}`
         .h-4.grid.absolute.bottom-0.dynamic-div.bg-red-600#milkBar                 
