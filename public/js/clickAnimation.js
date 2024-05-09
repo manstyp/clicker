@@ -1,19 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
   const clickButtonElement = document.getElementById("clickButton");
   const textContentElement = document.getElementById("textContent");
-  let clickMultiplier =
-    parseFloat(localStorage.getItem("clickMultiplier")) || 1;
 
   clickButtonElement.addEventListener("click", (event) => {
     let clickMultiplier =
       parseFloat(localStorage.getItem("clickMultiplier")) || 1;
+    let milkMultiplierElement =
+      parseFloat(localStorage.getItem("milkMultiplierElement")) || 1;
 
     const mouseX = event.clientX;
     const mouseY = event.clientY;
-    console.log("X:", mouseX, "Y:", mouseY);
 
     const animatedTextElement = document.createElement("p");
-    const textNodeElement = document.createTextNode(`+${clickMultiplier}`);
+    const textNodeElement = document.createTextNode(
+      `+${clickMultiplier * milkMultiplierElement}`
+    );
 
     animatedTextElement.classList.add("slide-fade-animation");
     animatedTextElement.classList.add("animatedText");
@@ -24,6 +25,5 @@ document.addEventListener("DOMContentLoaded", function () {
     animatedTextElement.style.top = mouseY + "px";
 
     textContentElement.appendChild(animatedTextElement);
-    console.dir(textContentElement);
   });
 });

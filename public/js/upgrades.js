@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let milkCountdown = 180;
   const milkBarElement = document.getElementById("milkBar");
   const milkCountdownElement = document.getElementById("milkCountdown");
+  const textContentElement = document.getElementsByClassName("animatedText");
+  localStorage.setItem("milkMultiplierElement", 1);
 
   //CPS räkning
   let clickCount = 0;
@@ -414,7 +416,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clicksNonSave += 1;
     if (clicksNonSave > 50) {
       alert("Sluta snusa!!!!!");
-      clicksNonSave = 0; // Återställ clickCount
+      clicksNonSave = 0;
     }
   }
 
@@ -447,6 +449,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (count % 2 === 0) {
+        //när man har nicokick
         milkMultiplier = 3;
         incrementAmount = 1000 / (3 * 60 * 100);
         milkBarElement.classList.add("bg-blue-500");
@@ -454,8 +457,11 @@ document.addEventListener("DOMContentLoaded", function () {
         clickMultiplierElement.textContent = `Klickstyrka: ${
           clickMultiplier * milkMultiplier
         } mg`;
+        localStorage.setItem("milkMultiplierElement", 3);
+
         milkCountdownElement.classList.add("hidden");
       } else {
+        //inte nickokick
         incrementAmount = 100 / (3 * 60 * 100);
         milkMultiplier = 1;
         milkBarElement.classList.remove("bg-blue-500");
@@ -464,6 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
           clickMultiplier * milkMultiplier
         } mg`;
         milkCountdownElement.classList.remove("hidden");
+        localStorage.setItem("milkMultiplierElement", 1);
       }
 
       count += 1;
